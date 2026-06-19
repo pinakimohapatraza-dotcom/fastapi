@@ -7,7 +7,8 @@ env:
     REPO_NAME: "fastapi-app"
     IMAGE_TAG: "latest"
     CLUSTER_NAME: "fastapi-cluster"
-    SERVICE_NAME: "fastapi-service"
+    SERVICE_NAME: "fastapi-task-service-mxt7uffs"
+    
 
 phases:
   pre_build:
