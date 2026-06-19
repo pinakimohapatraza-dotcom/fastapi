@@ -6,5 +6,5 @@ app = FastAPI()
 @app.get("/")
 def home():
     return {
-        "message":"FastAPI running on ECS Fargate"
+        "message":"FastAPI running on ECS Fargate1"
     }
