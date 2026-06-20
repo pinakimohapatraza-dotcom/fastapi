@@ -5,14 +5,13 @@ env:
     ACCOUNT_ID: "719905538647"
     REGION: "ap-southeast-2"
     REPO_NAME: "fastapi-ecs"
-    IMAGE_TAG: "latest"
     CLUSTER_NAME: "fastapi-clustertest"
     SERVICE_NAME: "fastapi-tasktest-service-qmn4jybf"
-    
 
 phases:
   pre_build:
     commands:
+      - IMAGE_TAG=$CODEBUILD_RESOLVED_SOURCE_VERSION
       - aws ecr get-login-password --region $REGION | docker login --username AWS --password-stdin $ACCOUNT_ID.dkr.ecr.$REGION.amazonaws.com
 
   build:
