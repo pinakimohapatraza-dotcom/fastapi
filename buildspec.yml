@@ -16,6 +16,7 @@ phases:
 
   build:
     commands:
+      - cat main.py
       - docker build --no-cache -t $REPO_NAME:$IMAGE_TAG .
       - docker tag $REPO_NAME:$IMAGE_TAG $ACCOUNT_ID.dkr.ecr.$REGION.amazonaws.com/$REPO_NAME:$IMAGE_TAG
 
