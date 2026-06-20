@@ -4,7 +4,7 @@ env:
   variables:
     ACCOUNT_ID: "719905538647"
     REGION: "ap-southeast-2"
-    REPO_NAME: "fastapi-app"
+    REPO_NAME: "fastapi-ecs"
     IMAGE_TAG: "latest"
     CLUSTER_NAME: "fastapi-cluster"
     SERVICE_NAME: "fastapi-task-service-mxt7uffs"
