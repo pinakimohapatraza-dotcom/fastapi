@@ -6,8 +6,8 @@ env:
     REGION: "ap-southeast-2"
     REPO_NAME: "fastapi-ecs"
     IMAGE_TAG: "latest"
-    CLUSTER_NAME: "fastapi-cluster"
-    SERVICE_NAME: "fastapi-task-service-mxt7uffs"
+    CLUSTER_NAME: "fastapi-clustertest"
+    SERVICE_NAME: "fastapi-tasktest-service-qmn4jybf"
     
 
 phases:
