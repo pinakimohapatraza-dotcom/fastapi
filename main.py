@@ -5,7 +5,7 @@ from fastapi import FastAPI
 
 app = FastAPI()
 
-sqs = boto3.client("sqs", region_name="ap-south-1")
+sqs = boto3.client("sqs", region_name="ap-southeast-2")
 
 QUEUE_URL = os.getenv("QUEUE_URL")
 
