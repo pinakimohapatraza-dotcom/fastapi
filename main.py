@@ -9,7 +9,7 @@ QUEUE_URL = os.getenv("QUEUE_URL")
 @app.get("/")
 def home():
     return {
-        "message":"FastAPI running on ECS alb PINAKI 10"
+        "message":"FastAPI running on ECS alb PINAKI 101"
     }
 
 @app.post("/order")

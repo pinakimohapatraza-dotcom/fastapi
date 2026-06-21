@@ -6,7 +6,7 @@ env:
     REGION: "ap-southeast-2"
     REPO_NAME: "fastapi-ecs"
     IMAGE_TAG: "latest"
-    CLUSTER_NAME: "cluster- fastapi-clustertest"
+    CLUSTER_NAME: "fastapi-clustertest"
     SERVICE_NAME: "fastapi-tasktest-service-5vgg0skz"
 
 phases:
