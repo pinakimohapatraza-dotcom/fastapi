@@ -6,7 +6,6 @@ import os
 app = FastAPI()
 
 BUCKET = os.getenv("BUCKET_NAME")
-
 s3 = boto3.client(
     "s3",
     region_name="ap-southeast-2"
