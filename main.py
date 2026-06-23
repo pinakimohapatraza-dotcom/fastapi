@@ -17,7 +17,7 @@ MAX_SIZE = 10 * 1024 * 1024
 @app.get("/")
 def home():
     return {
-        "message": "FastAPI running on ECS alb PINAKI 112"
+        "message": "FastAPI running on ECS alb PINAKI 1j12"
     }
 
 
