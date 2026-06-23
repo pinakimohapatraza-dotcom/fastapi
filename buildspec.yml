@@ -7,7 +7,7 @@ env:
     REPO_NAME: "fastapi-ecs"
     IMAGE_TAG: "latest"
     CLUSTER_NAME: "fastapi-clustertest"
-    SERVICE_NAME: "fastapi-tasktest-service-5vgg0skz"
+    SERVICE_NAME: "fastapi-tasktest-service-23e50sj"
 
 phases:
   pre_build:

@@ -1,13 +1,18 @@
-import os
-import json
+from fastapi import FastAPI, UploadFile, File, HTTPException
 import boto3
-from fastapi import FastAPI
+import uuid
+import os
 
 app = FastAPI()
 
-sqs = boto3.client("sqs", region_name="ap-southeast-2")
+BUCKET = os.getenv("BUCKET_NAME")
 
-QUEUE_URL = os.getenv("QUEUE_URL")
+s3 = boto3.client(
+    "s3",
+    region_name="ap-southeast-2"
+)
+
+MAX_SIZE = 10 * 1024 * 1024
 
 
 @app.get("/")
@@ -16,6 +21,36 @@ def home():
         "message": "FastAPI running on ECS alb PINAKI 112"
     }
 
+
+@app.post("/upload")
+async def upload(file: UploadFile = File(...)):
+    try:
+        contents = await file.read()
+
+        if len(contents) > MAX_SIZE:
+            raise HTTPException(
+                status_code=400,
+                detail="File too large"
+            )
+
+        key = f"raw/{uuid.uuid4()}-{file.filename}"
+
+        s3.put_object(
+            Bucket=BUCKET,
+            Key=key,
+            Body=contents
+        )
+
+        return {
+            "message": "Uploaded",
+            "file_key": key
+        }
+
+    except Exception as e:
+        raise HTTPException(
+            status_code=500,
+            detail=str(e)
+        )
 
 @app.post("/order")
 def create_order(order: dict):
