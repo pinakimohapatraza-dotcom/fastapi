@@ -12,6 +12,7 @@ from typing import List
 
 
 app = FastAPI()
+
 def get_db():
     db = SessionLocal()
     try:
