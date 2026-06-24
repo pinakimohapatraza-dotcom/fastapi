@@ -11,6 +11,6 @@ def get_secret():
 
 secret = get_secret()
 
-DATABASE_URL = f"postgresql://{secret['username']}:{secret['password']}@{secret['host']}:{secret['port']}/{secret['dbname']}"
+DATABASE_URL = f"postgresql://{secret['username']}:{secret['password']}@{secret['host']}:{secret['port']}/{secret['dbInstanceIdentifier']}"
 
 engine = create_engine(DATABASE_URL)
