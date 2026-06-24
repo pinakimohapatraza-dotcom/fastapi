@@ -1,9 +1,23 @@
-from fastapi import FastAPI, UploadFile, File, HTTPException
+from fastapi import FastAPI, UploadFile, File, HTTPException, Depends
 import boto3
 import uuid
 import os
 
+
+from sqlalchemy.orm import Session
+from db import SessionLocal
+from models import Customer
+from schemas import CustomerCreate, CustomerResponse
+from typing import List
+
+
 app = FastAPI()
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
 
 BUCKET = os.getenv("BUCKET_NAME")
 s3 = boto3.client(
@@ -62,3 +76,26 @@ def create_order(order: dict):
         "message": "Order queued",
         "message_id": response["MessageId"]
     }
+
+@app.post("/customers", response_model=CustomerResponse)
+def create_customer(
+    customer: CustomerCreate,
+    db: Session = Depends(get_db)
+):
+    new_customer = Customer(
+        name=customer.name,
+        email=customer.email,
+        phone=customer.phone
+    )
+
+    db.add(new_customer)
+    db.commit()
+    db.refresh(new_customer)
+
+    return new_customer
+
+
+@app.get("/customers", response_model=List[CustomerResponse])
+def get_customers(db: Session = Depends(get_db)):
+    customers = db.query(Customer).all()
+    return customers
