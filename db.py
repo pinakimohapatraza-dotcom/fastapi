@@ -1,6 +1,7 @@
 import boto3
 import json
-from sqlalchemy import create_engine, sessionmaker
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
 
 def get_secret():
     client = boto3.client("secretsmanager", region_name="ap-southeast-2")
