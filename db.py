@@ -14,3 +14,9 @@ secret = get_secret()
 DATABASE_URL = f"postgresql://{secret['username']}:{secret['password']}@{secret['host']}:{secret['port']}/{secret['dbInstanceIdentifier']}"
 
 engine = create_engine(DATABASE_URL)
+
+SessionLocal = sessionmaker(
+autocommit=False,
+autoflush=False,
+bind=engine
+)
