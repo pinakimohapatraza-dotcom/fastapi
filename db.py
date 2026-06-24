@@ -13,7 +13,9 @@ def get_secret():
 secret = get_secret()
 
 DATABASE_URL = f"postgresql://{secret['username']}:{secret['password']}@{secret['host']}:{secret['port']}/{secret['engine']}"
-
+print(secret)
+print("pinaki")
+print(DATABASE_URL)
 engine = create_engine(DATABASE_URL)
 
 SessionLocal = sessionmaker(
